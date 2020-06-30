@@ -3,6 +3,8 @@ multilingualShinyApp
 
 A way to build a multilingual Shiny app using a double list and renderUI.
 
+Local run : runApp()
+
 Run it with:
     shiny::runGitHub("multilingualShinyApp","chrislad")
 
