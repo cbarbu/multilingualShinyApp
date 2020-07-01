@@ -13,9 +13,9 @@ If missing translations, the app saves missing information in missingTranslation
 UpdateMissingTranslation() # to check for missing translations and update 'translation.json', offers direct editing in vim
 UpdateTranslation() # to update 'translation.bin' after manual changes to 'translation.json'
 
-To use in an other app, just copy this folder in then in app.R or server.R add: 
+To use in an other app, just copy 'translationFunctions.R' in a 'translation' folder or the app. Then, in app.R or server.R add: 
 
-    source("myFolderTranslation/translationFunctions.R",chdir=TRUE)
+    source(file.path("translation","translationFunctions.R",chdir=TRUE)
 
 and at the beginning of 'shinyServer(function(input,output)){' add :
 
