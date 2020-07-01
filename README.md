@@ -4,13 +4,13 @@ multilingualShinyApp
 A way to build a multilingual Shiny app using a double list and renderUI.
 
 This is a fork from https://github.com/chrislad/multilingualShinyApp 
-*switching to json for translation file* and *adding helper functions*.
+**switching to json for translation file** and **adding helper functions**.
  
 Local test run : shiny::runApp()
 
 If missing translations, the app saves missing information in missingTranslations.txt,
 
-UpdateMissingTranslation() # to check for missing translations and update 'translation.json' 
+UpdateMissingTranslation() # to check for missing translations and update 'translation.json', offers direct editing in vim
 UpdateTranslation() # to update 'translation.bin' after manual changes to 'translation.json'
 
 To use in an other app, just copy this folder in then in app.R or server.R add: 
