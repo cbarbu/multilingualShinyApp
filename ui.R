@@ -2,10 +2,14 @@ library(shiny)
 
 shinyUI(fluidPage(
   
-  titlePanel("Hello Shiny!"),
+  titlePanel(uiOutput("titlePanel")),
   
+
   radioButtons(inputId = "language", label = "",
-               choices = c("English" = "en", "Français" = "fr"),
+               choices = c("English" = "en",
+                           "Français" = "fr",
+                           "Español" = "es"
+                           ),
                selected = "en"),
   
   sidebarLayout(

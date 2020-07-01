@@ -1,30 +1,28 @@
 
 library(shiny)
-
-
-load("translation.bin") # contains the dictionary, parsed as a double list
+source("translationFunctions.R")
 
 shinyServer(function(input, output) {
+  tr <- function(text){trInternal(text,input$language)}
 
-  tr <- function(text){ # translates text into current language
-    sapply(text,function(s) translation[[s]][[input$language]], USE.NAMES=FALSE)
-  }
-  
+  output$titlePanel <- renderText(tr("titlePanel"))
+
   output$distPlot <- renderPlot({
-    plot(1:input$obs,1:input$obs, main = tr("plotTitle"))
+      inputObs <- input$obs
+      if(length(inputObs)<1){
+          inputObs <- 1
+      }
+    plot(1:inputObs,1:inputObs, main = tr("plotTitle"))
     
   })
-  
+   
   output$description <- renderText({
-    paste0(tr("numberOfObservations"), ": ",input$obs)
-    
+    paste(tr("You have selected:"), 
+          paste(tr(input$weekdays), collapse = ', '),
+          tr("test_text"),
+          tr("another_text")
+          )
   })
-  
-  output$description <- renderText({
-    paste(tr("You have selected:"), paste(tr(input$weekdays), collapse = ', '))
-    
-  })
-  
   
   # UI
   output$uiObs <- renderUI({
@@ -42,5 +40,4 @@ shinyServer(function(input, output) {
                 choices   = days,
                 multiple  = TRUE)
   })
-  
 })

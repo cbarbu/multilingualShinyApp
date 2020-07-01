@@ -3,11 +3,32 @@ multilingualShinyApp
 
 A way to build a multilingual Shiny app using a double list and renderUI.
 
-Local run : runApp()
+This is a fork from https://github.com/chrislad/multilingualShinyApp 
+switching to json for translation file and adding helper files.
+ 
+Local test run : shiny::runApp()
 
-Run it with:
-    shiny::runGitHub("multilingualShinyApp","chrislad")
+If missing translations, the app saves missing information in missingTranslations.txt,
 
-Edit the dictionary in `dictionary.csv` (tab-separated). Run `updateTranslation.R` to update `translation.bin`.
+UpdateMissingTranslation() # to check for missing translations and update 'translation.json' 
+UpdateTranslation() # to update 'translation.bin' after manual changes to 'translation.json'
 
-More information at: [http://chrisladroue.com/2014/11/another-take-on-building-a-multi-lingual-shiny-app/](http://chrisladroue.com/2014/11/another-take-on-building-a-multi-lingual-shiny-app/)
+To use in an other app, just copy this folder in then in app.R or server.R add: 
+
+    source("myFolderTranslation/translationFunctions.R",chdir=TRUE)
+
+and at the beginning of 'shinyServer(function(input,output)){' add :
+
+    tr <- function(text){trInternal(text,input$language)}
+
+
+Then, everything in server using tr("someKey") will look in 'translation.json' for the key in the language given by input$language. Alternatively, can use a 'language' variable set by the developper in place of 'input$language'.
+
+In the UI, you can have things like 
+
+    uiOutput("mykey")
+
+refering in the server to :
+    
+    output$mykey <- renderText(tr("mykeyInJsonFile"))
+

@@ -1,0 +1,86 @@
+[
+  {
+    "key": "numberOfObservations",
+    "en": "Number of observations",
+    "fr": "Nombre d'observations",
+    "es": "Numero de observaciones"
+  },
+  {
+    "key": "plotTitle",
+    "en": "A simple identity plot",
+    "fr": "Un simple graphe de la fonction identité",
+    "es": "Un simple gráfico de la función de identidad"
+  },
+  {
+    "key": "You have selected:",
+    "en": "You have selected:",
+    "fr": "Vous avez choisi:",
+    "es": "Usted escogio"
+  },
+  {
+    "key": "Monday",
+    "en": "Monday",
+    "fr": "Lundi",
+    "es": "Lunes"
+  },
+  {
+    "key": "Tuesday",
+    "en": "Tuesday",
+    "fr": "Mardi",
+    "es": "Martes"
+  },
+  {
+    "key": "Wednesday",
+    "en": "Wednesday",
+    "fr": "Mercredi",
+    "es": "Miercoles"
+  },
+  {
+    "key": "Thursday",
+    "en": "Thursday",
+    "fr": "Jeudi",
+    "es": "Jueves"
+  },
+  {
+    "key": "Friday",
+    "en": "Friday",
+    "fr": "Vendredi",
+    "es": "Viernes"
+  },
+  {
+    "key": "Saturday",
+    "en": "Saturday",
+    "fr": "Samedi",
+    "es": "Sabado"
+  },
+  {
+    "key": "Sunday",
+    "en": "Sunday",
+    "fr": "Dimanche",
+    "es": "Domingo"
+  },
+  {
+    "key": "Selection:",
+    "en": "Selection:",
+    "fr": "Sélection :",
+    "es": "Selección:"
+  },
+  {
+    "key": "test_text",
+    "en": "Testing adding new text.",
+    "fr": "Test d'ajout d'un nouveau texte.",
+    "es": "Probando la adición de nuevo texto."
+  },
+  {
+    "key": "another_text",
+    "en": "Yet another text.",
+    "fr": "Encore un autre texte.",
+    "es": "Otro texto."
+  },
+  {
+    "key": "titlePanel",
+    "en": "Hello Shiny!",
+    "fr": "Bonjour Shiny !",
+    "es": "¡Hola Shiny!"
+  }
+]
