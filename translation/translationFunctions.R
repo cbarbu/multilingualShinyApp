@@ -88,7 +88,7 @@ UpdateMissingTranslation <- function(
     nMissingTrans <- lapply(newTranslationContent,function(x){length(which(is.na(x)))})
     for(lang in names(nMissingTrans)){
         if(nMissingTrans[[lang]]>0){
-            cat("Missing",nMissingTrans[[lang]],"translation for",lang,".\n")
+            cat("Missing",nMissingTrans[[lang]],"translation(s) for",lang,".\n")
         }
     }
 
