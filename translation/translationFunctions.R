@@ -23,15 +23,19 @@ library("jsonlite")
 library(plyr)
 
 translationFolder <- "translation"
+translationBin <- file.path(translationFolder,"translation.bin")
+translationMis <- file.path(translationFolder,"missingTranslations.txt")
+translationJson <- file.path(translationFolder,"translation.json")
 
-importBin <- try(load(file.path(translationFolder,"translation.bin")),silent=TRUE) # contains the dictionary, parsed as a double list
+importBin <- try(load(translationBin),silent=TRUE) # contains the dictionary, parsed as a double list
+
 if(class(importBin)=="try-error"){
     translation <-list() 
 }
 
 SignalMissing <- function(text,lang){
     warning(paste0("Missing translation of '",text,"' to '",lang,"'\n"))
-    cat(text,",",lang,"\n",file="missingTranslations.txt",append=TRUE,sep="")
+    cat(text,",",lang,"\n",file=translationMis,append=TRUE,sep="")
 }
 trInternal <- function(text,lang){ # translates text into current language
     if(is.null(text)||text==""){
@@ -60,10 +64,8 @@ Rjson <- function(file){
     return(out)
 }
 UpdateMissingTranslation <- function(
-                                     translationFile=file.path(translationFolder,
-                                                               "translation.json"),
-                                     missingTranslationFile=file.path(translationFolder,
-                                                                      "missingTranslations.txt")){
+                                     translationFile=translationJson,
+                                     missingTranslationFile=translationMis){
 
     misTrad <- try(read.csv(missingTranslationFile,header=FALSE),silent=TRUE)
     if(class(misTrad)=="try-error"){
@@ -106,10 +108,8 @@ UpdateMissingTranslation <- function(
 
     return(invisible(translationContent))
 }
-UpdateTranslation <- function(translationFile=file.path(translationFolder,
-                                                        "translation.json"),
-                              translationBin=file.path(translationFolder,
-                                                       "translation.bin")
+UpdateTranslation <- function(translationFile=translationJson,
+                              translationBin=translationBin
                               ){
     # translationContent <- read.delim("dictionary.csv", header = TRUE, sep = "\t", as.is = TRUE) 
     translationContent <- Rjson(translationFile)
