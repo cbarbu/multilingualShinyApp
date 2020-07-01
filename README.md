@@ -4,7 +4,7 @@ multilingualShinyApp
 A way to build a multilingual Shiny app using a double list and renderUI.
 
 This is a fork from https://github.com/chrislad/multilingualShinyApp 
-switching to json for translation file and adding helper files.
+*switching to json for translation file* and *adding helper functions*.
  
 Local test run : shiny::runApp()
 
