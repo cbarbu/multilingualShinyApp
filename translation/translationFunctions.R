@@ -57,7 +57,7 @@ trInternal <- function(text,lang){ # translates text into current language
 }
 
 Rjson <- function(file){
-    out <- try(read_json(file),silent=TRUE)
+    out <- try(fromJSON(file),silent=TRUE)
     if(class(out)=="try-error"){
         out <- data.frame(key=NULL)
     }
@@ -80,6 +80,10 @@ UpdateMissingTranslation <- function(
     toAdd <- data.frame(key=setdiff(misTrad$key,translationContent$key))
 
     newTranslationContent <- data.frame(data.table::rbindlist(list(translationContent,toAdd),fill=TRUE))
+    toAddCols <- setdiff(unique(misTrad$lang),names(newTranslationContent))
+    for(lang in toAddCols){
+        newTranslationContent[,lang] <- NA
+    }
 
     nMissingTrans <- lapply(newTranslationContent,function(x){length(which(is.na(x)))})
     for(lang in names(nMissingTrans)){
@@ -109,7 +113,7 @@ UpdateMissingTranslation <- function(
     return(invisible(translationContent))
 }
 UpdateTranslation <- function(translationFile=translationJson,
-                              translationBin=translationBin
+                              translationBinFile=translationBin
                               ){
     # translationContent <- read.delim("dictionary.csv", header = TRUE, sep = "\t", as.is = TRUE) 
     translationContent <- Rjson(translationFile)
@@ -122,5 +126,5 @@ UpdateTranslation <- function(translationFile=translationJson,
 
     cat("Translation updated for the app.\n")
 
-    save(translation, file = translationBin)
+    save(translation, file = translationBinFile)
 }
