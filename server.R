@@ -1,6 +1,6 @@
 
 library(shiny)
-source("translationFunctions.R")
+source(file.path("translation","translationFunctions.R"))
 
 shinyServer(function(input, output) {
   tr <- function(text){trInternal(text,input$language)}
