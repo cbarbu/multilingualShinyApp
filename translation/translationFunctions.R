@@ -38,6 +38,7 @@ SignalMissing <- function(text,lang){
     cat(text,",",lang,"\n",file=translationMis,append=TRUE,sep="")
 }
 trInternal <- function(text,lang){ # translates text into current language
+    text <- as.character(text)
     if(is.null(text)||text==""){
         return("")
     }
@@ -48,7 +49,7 @@ trInternal <- function(text,lang){ # translates text into current language
     if(is.null(out[[1]])|| is.na(out[[1]])){
         out <- sapply(text,function(s) translation[[s]][["en"]], USE.NAMES=FALSE)
         # SignalMissing(text,lang) # not needed as detected automatically by updateMissingTranslation.R if other translations not missing
-        if(is.null(out[[1]])){
+        if(is.null(out[[1]])|| is.na(out[[1]])){
             SignalMissing(text,"en")
             out <- text
         }
