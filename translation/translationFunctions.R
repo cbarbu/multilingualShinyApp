@@ -37,7 +37,7 @@ SignalMissing <- function(text,lang){
     warning(paste0("Missing translation of '",text,"' to '",lang,"'\n"))
     cat(text,",",lang,"\n",file=translationMis,append=TRUE,sep="")
 }
-trInternal <- function(text,lang){ # translates text into current language
+trInternal <- function(text,lang,defaultLang="en"){ # translates text into current language
     text <- as.character(text)
     if(is.null(text)||text==""){
         return("")
@@ -47,7 +47,7 @@ trInternal <- function(text,lang){ # translates text into current language
 
     # handling missing translations
     if(is.null(out[[1]])|| is.na(out[[1]])){
-        out <- sapply(text,function(s) translation[[s]][["en"]], USE.NAMES=FALSE)
+        out <- sapply(text,function(s) translation[[s]][[defaultLang]], USE.NAMES=FALSE)
         # SignalMissing(text,lang) # not needed as detected automatically by updateMissingTranslation.R if other translations not missing
         if(is.null(out[[1]])|| is.na(out[[1]])){
             SignalMissing(text,"en")
@@ -64,8 +64,7 @@ Rjson <- function(file){
     }
     return(out)
 }
-UpdateMissingTranslation <- function(
-                                     translationFile=translationJson,
+UpdateMissingTranslation <- function(translationFile=translationJson,
                                      missingTranslationFile=translationMis){
 
     misTrad <- try(read.csv(missingTranslationFile,header=FALSE),silent=TRUE)
